@@ -29,3 +29,11 @@ class RegisterPersonForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Такой E-mail уже существует!")
         return email
+    
+class PersonUpdateForm(forms.ModelForm):
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
+    email = forms.CharField(label='Email', widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
+    
+    class Meta:
+        model = User
+        fields = ['username', 'email']
