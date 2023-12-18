@@ -18,4 +18,10 @@
     border-color: #ffecb5;
     }
 
-    
+.ft {
+    position: absolute;
+    bottom: 0;
+    left: auto;
+    height: 30px;
+    width: 100%;
+}

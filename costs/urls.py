@@ -21,5 +21,6 @@ from costs import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.IndexMainView.as_view(), name='main'),
-    path('users/', include(('costs.users.urls', 'users'), namespace='users'))
+    path('users/', include(('costs.users.urls', 'users'), namespace='users')),
+    path('spending/', include(('costs.spending.urls', 'spending'), namespace='spending'))
 ]

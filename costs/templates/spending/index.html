@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+<h1 class="h1 my-4">
+    Список трат
+</h1>
+<a class="btn btn-primary mb-3" href="{% url "spending:create" %}">Создать трату</a>
+<div class="card">
+  <div class="card-body">
+<form method="get">
+  {{ f.form.as_p }}
+  <input type="submit" value='Применить фильтр' class="btn btn-primary"/>
+</form>
+</div>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Стоимость</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Дата добавления</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for sp in f.qs %}
+      <tr>
+        <td>{{ sp.id }}</td>
+        <td>{{ sp.price }}</td>
+        <td>{{ sp.category }}</td>
+        <td>{{ sp.timestamp }}</td>
+        <td>
+            <a href="{% url 'spending:update' pk=sp.id %}">Изменить</a>
+            <a href="{% url 'spending:delete' pk=sp.id %}">Удалить</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}
